@@ -1,6 +1,6 @@
 # terraform-aws-vpcbatch5
 
-Create main.tf file and input following
+## Create main.tf file and input following
 
 ```hcl
 module "vpc" {
@@ -14,11 +14,12 @@ module "vpc" {
    subnet1_name = "hello1"
    subnet2_name = "hello2"
    subnet3_name = "hello3"
+   ports = [22, 80, 81]
 }
 ```
 
 
-Create apache.sh file and input a script. Eg.
+## Create apache.sh file and input a script. Eg.
 ```hcl
 #!/bin/bash
 
