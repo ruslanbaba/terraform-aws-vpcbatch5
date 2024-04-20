@@ -1,5 +1,5 @@
-provider aws {
-    region = var.region
+provider "aws" {
+  region = var.region
 }
 
 resource "aws_vpc" "main" {
@@ -7,10 +7,10 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "main" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet1_cidr
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.subnet1_cidr
   map_public_ip_on_launch = true
-  availability_zone = "us-east-2a"
+  availability_zone       = "us-east-2a"
 
   tags = {
     Name = var.subnet1_name
@@ -19,10 +19,10 @@ resource "aws_subnet" "main" {
 
 
 resource "aws_subnet" "main2" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet2_cidr
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.subnet2_cidr
   map_public_ip_on_launch = true
-  availability_zone = "us-east-2b"
+  availability_zone       = "us-east-2b"
 
   tags = {
     Name = var.subnet2_name
@@ -31,10 +31,10 @@ resource "aws_subnet" "main2" {
 
 
 resource "aws_subnet" "main3" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet3_cidr
-   map_public_ip_on_launch = true
-  availability_zone = "us-east-2c"
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.subnet3_cidr
+  map_public_ip_on_launch = true
+  availability_zone       = "us-east-2c"
 
   tags = {
     Name = var.subnet3_name
@@ -64,17 +64,17 @@ resource "aws_route_table" "example" {
 }
 
 resource "aws_route_table_association" "a" {
-    subnet_id = aws_subnet.main.id
-    route_table_id = aws_route_table.example.id
+  subnet_id      = aws_subnet.main.id
+  route_table_id = aws_route_table.example.id
 }
 
 resource "aws_route_table_association" "b" {
-    subnet_id = aws_subnet.main2.id
-    route_table_id = aws_route_table.example.id
+  subnet_id      = aws_subnet.main2.id
+  route_table_id = aws_route_table.example.id
 }
 
 resource "aws_route_table_association" "c" {
-    subnet_id = aws_subnet.main3.id
-    route_table_id = aws_route_table.example.id
+  subnet_id      = aws_subnet.main3.id
+  route_table_id = aws_route_table.example.id
 }
 
